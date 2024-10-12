@@ -1,0 +1,56 @@
+id: io.github.pedroermarinho.linux_game_tweaks
+
+runtime: org.freedesktop.Platform
+runtime-version: "24.08"
+sdk: org.freedesktop.Sdk
+command: linux_game_tweaks
+
+finish-args:
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --share=ipc
+  - --device=dri
+  - --talk-name=org.freedesktop.Flatpak
+  - --filesystem=home
+  - --share=network
+  - --filesystem=host # Permissão para acessar todo o sistema de arquivos
+  - --allow=devel # Permissão para executar comandos de desenvolvimento
+  - --filesystem=~/.config/linux_game_tweaks:create
+  - --filesystem=~/.local/share/Steam
+  - --filesystem=~/.steam
+  - --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam
+  - --filesystem=~/.config/MangoHud:create
+  - --filesystem=xdg-desktop
+  - --filesystem=xdg-documents
+  - --filesystem=xdg-pictures
+  - --filesystem=xdg-music
+  - --filesystem=xdg-videos
+  - --filesystem=xdg-download
+  - --filesystem=~/.var/app/com.heroicgameslauncher.hgl/config/heroic
+  - --filesystem=~/.var/app/com.usebottles.bottles/data/bottles
+  - --filesystem=~/.var/app/com.valvesoftware.Steam/data/Steam
+  - --filesystem=~/.var/app/net.lutris.Lutris/data/lutris
+
+# build flutter app
+modules:
+  - name: linux_game_tweaks
+    buildsystem: simple
+    build-commands:
+      - ls -l
+      - mkdir -p /app/linux_game_tweaks
+      - unzip dist/1.1.0+1/linux_game_tweaks-1.1.0+1-linux.zip -d /app/linux_game_tweaks
+      - ls -l /app/linux_game_tweaks
+      - chmod +x /app/linux_game_tweaks/linux_game_tweaks
+      - mkdir -p /app/bin
+      - ln -s /app/linux_game_tweaks/linux_game_tweaks /app/bin/linux_game_tweaks
+      - install -Dm644 io.github.pedroermarinho.linux_game_tweaks.appdata.xml /app/share/appdata/io.github.pedroermarinho.linux_game_tweaks.appdata.xml
+      - install -Dm644 512x512.png /app/share/icons/hicolor/512x512/apps/io.github.pedroermarinho.linux_game_tweaks.png
+      - install -Dm644 io.github.pedroermarinho.linux_game_tweaks.desktop /app/share/applications/io.github.pedroermarinho.linux_game_tweaks.desktop
+      - mkdir -p /app/config
+      - install -Dm644 settings.json /app/config/settings.json
+
+    sources:
+      - type: dir
+        path: flatpak
+      - type: dir
+        path: linux_game_tweaks

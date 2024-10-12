@@ -1,0 +1,3 @@
+[submodule "linux_game_tweaks"]
+	path = linux_game_tweaks
+	url = https://github.com/pedroermarinho/linux_game_tweaks

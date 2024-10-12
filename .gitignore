@@ -1,0 +1,31 @@
+# Ignore arquivos e pastas de sistema de IDEs
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore arquivos de build do Flatpak
+.flatpak-builder/
+builddir/
+repo/
+
+# Ignore arquivos temporários e de cache
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignore binários gerados
+/app/
+
+# Ignore arquivos de dependências do Flutter
+pubspec.lock
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Ignore arquivos de configuração local
+*.env
+.env.*
+
+# Ignore o subdiretório do submódulo
+linux_game_tweaks/.git
