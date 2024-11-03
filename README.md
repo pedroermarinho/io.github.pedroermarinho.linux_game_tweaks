@@ -7,7 +7,7 @@ cd linux_game_tweaks
 flutter_distributor release --name build
 ```
 
-## Build flap
+## Build flatpak
 
 ```bash
 flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo --install builddir io.github.pedroermarinho.linux_game_tweaks.yml
